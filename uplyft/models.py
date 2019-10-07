@@ -17,16 +17,6 @@ OCCUPATIONS = [
     ('PART TIME', 'Part time employee'),
 ]
 
-US_CITIES = [
-     ('SPR', 'Springfield'), 
-     ('NYC', 'New York City'), 
-]
-
-US_STATES = [
-    ('NY', 'New York'), 
-    ('NJ', 'New Jersey'),
-]
-
 YEARS_OF_EXPERIENCE = [
     ('0-1', '0 to 1 year'),
     ('2', '2 years'),
