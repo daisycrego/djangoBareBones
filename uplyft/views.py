@@ -3,7 +3,8 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from .models import Question, Choice, RegistrationForm
+from .models import Question, Choice
+from .forms import CandidateRegistrationForm
 
 class IndexView(generic.ListView):
     template_name = 'uplyft/index.html'
@@ -49,10 +50,14 @@ def vote(request, question_id):
         return HttpResponseRedirect(reverse('uplyft:results', args=(question.id,)))
 
 def register(request): 
-    return render(request, 'uplyft/register.html')
+    if request.method == 'POST':
+        form = CandidateRegistrationForm(request.POST)
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            return HttpResponseRedirect('/uplyft/')
+    else:
+        form = CandidateRegistrationForm()
+        return render(request, 'uplyft/register.html', {'form': form})
 
-#def RegisterView(generic.ListView):
-#    template_name = 'uplyft/register.html'
-#    context_object_name = ? 
 
 
