@@ -1,8 +1,10 @@
 import datetime
 from django.utils import timezone
-
 from django.db import models
 from django.forms import ModelForm, ModelChoiceField
+
+#https://django-localflavor.readthedocs.io/en/latest/localflavor/us/
+from localflavor.us.models import USStateField, USZipCodeField 
 
 EMPLOYERS = [
     ('NYCZ', 'New York City Zoo'),
@@ -91,19 +93,15 @@ class CandidateRegistrationModel(models.Model):
         help_text = "Apartment/Unit Number",
     )
     city = models.CharField(
-        max_length = 100, 
-        choices = US_CITIES, 
+        max_length = 200, 
         null = False,
         help_text = "The candidate's city.",
     )
-    state = models.CharField(
-        max_length = 100, 
-        choices = US_STATES, 
+    state = USStateField(
         null = False,
         help_text = "The candidate's state.",
     )
-    zipcode = models.CharField(
-        max_length = 20,
+    zipcode = USZipCodeField(
         null=False, 
         help_text = "The candidate's zipcode.", 
     )
