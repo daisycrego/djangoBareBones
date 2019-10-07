@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import CandidateRegistrationForm
+from .models import CandidateRegistrationModel
 
 
 class CandidateRegistrationAdmin(admin.ModelAdmin):
@@ -12,5 +12,5 @@ class CandidateRegistrationAdmin(admin.ModelAdmin):
     list_filter = ['first_name', 'last_name']
     search_fields = ['first_name', 'last_name']
 
-#Tell the admin that CandidateRegistrationForm objects have an admin interface
-admin.Site.register(CandidateRegistrationForm, CandidateRegistrationAdmin)
+#Tell the admin that CandidateRegistrationModel objects have an admin interface
+admin.site.register(CandidateRegistrationModel, CandidateRegistrationAdmin)
