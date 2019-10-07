@@ -1,23 +1,16 @@
 from django.contrib import admin
 
-from .models import Question, Choice
-
-class ChoiceInline(admin.TabularInline):
-    model = Choice
-    extra = 3
+from .models import CandidateRegistrationForm
 
 
-#splits the form into fieldsets
-class QuestionAdmin(admin.ModelAdmin):
+class CandidateRegistrationAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None,               {'fields': ['question_text']}),
-        ('Date information', {'fields': ['pub_date'], 'classes': ['collapse']}),
+        ("First name", {'fields':['first_name']}),
+        ("Last name", {'fields':['last_name']}),
     ]
-    inlines = [ChoiceInline]
-    list_display = ('question_text', 'pub_date', 'was_published_recently')
-    list_filter = ['pub_date']
-    search_fields = ['question_text']
+    list_display = ('first_name', 'last_name')
+    list_filter = ['first_name', 'last_name']
+    search_fields = ['first_name', 'last_name']
 
-#Tell the admin that Question objects have an admin interface
-admin.site.register(Question, QuestionAdmin)
-admin.site.register(Choice)
+#Tell the admin that CandidateRegistrationForm objects have an admin interface
+admin.Site.register(CandidateRegistrationForm, CandidateRegistrationAdmin)
